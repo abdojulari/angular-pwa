@@ -1,3 +1,7 @@
+
 export const environment = {
-  production: true
+  production: true,
+  BASE_URL:'https://free-to-play-games-database.p.rapidapi.com/api/games',
+  API_KEY:'ac50972351mshdb2ecef85e48841p134e75jsn2af63505048f',
+  API_HOST: 'free-to-play-games-database.p.rapidapi.com'
 };

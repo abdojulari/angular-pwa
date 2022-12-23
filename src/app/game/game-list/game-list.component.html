@@ -1,0 +1,44 @@
+<div class="container-fluid bg-slate-50 sm:p-10 sm:mt-20 md:p-10 md:mt-20 lg:p-10 lg:mt-20 p-10 mt-20">
+<form>
+  <div class="mx-auto px-10">
+    <input class="border border-gray-300 bg-white h-10 px-5 text-sm focus:outline-none" type="text" name="searchTerm" 
+      placeholder="Filter by game title"
+      [(ngModel)]="searchTerm" />
+      
+  </div>
+</form>
+<div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5">  
+    <!--Card 1-->
+    <div class="rounded overflow-hidden shadow-lg" 
+    *ngFor="let game of games | searchFilter: searchTerm | paginate:{
+        itemsPerPage: itemSize,
+        currentPage: page,
+        totalItems: count 
+    } ; let i = index">
+      <img  class="w-full" [src]="game.thumbnail" />
+      <div class="px-6 py-4">
+        <div class="font-bold text-lg mb-2">{{ game.title }}</div>
+        <p class="text-gray-700 text-sm">
+            {{ game.short_description }}
+        </p>
+      </div>
+      <div class="px-6 pt-4 pb-2">
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ game.platform}}</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ game.genre }}</span>
+      </div>
+    </div>
+
+   
+  </div> 
+  <div class="my-10">
+        <pagination-controls
+        previousLabel="Prev"
+        nextLabel="Next"
+        (pageChange) ="onDataChange($event)"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel={{page}}
+        screenReaderCurrentLabel="You're on page"
+        >
+        </pagination-controls>
+    </div>
+</div>
