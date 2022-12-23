@@ -6,7 +6,7 @@ require('dotenv').config();
 const environment = argv.environment;
 const isProduction = environment === 'prod';
 
-if (!process.env.API_KEY || !process.env.API_HOST || !process.env.BASE_URL) {
+if (!process.env["API_KEY"] || !process.env["API_HOST"] || !process.env["BASE_URL"]) {
    console.error('All the required environment variables were not provided!');
    process.exit(-1);
 }
@@ -19,9 +19,9 @@ const targetPath = isProduction
 const environmentFileContent = `
 export const environment = {
    production: ${isProduction},
-   API_URL: "${process.env.API_URL}",
-   API_HOST: "${process.env.API_HOST}",
-   BASE_URL: "${process.env.BASE_URL}"
+   API_URL: "${process.env["API_URL"]}",
+   API_HOST: "${process.env["API_HOST"]}",
+   BASE_URL: "${process.env["BASE_URL"]}"
 };
 `;
 // write the content to the respective file
