@@ -3,7 +3,9 @@
   <div class="mx-auto px-10">
     <input class="border border-gray-300 bg-white h-10 px-5 text-sm focus:outline-none" type="text" name="searchTerm" 
       placeholder="Filter by game title"
-      [(ngModel)]="searchTerm" />
+      [(ngModel)]="searchTerm" 
+      aria-label="Search for games by title"
+      />
       
   </div>
 </form>
@@ -15,7 +17,7 @@
         currentPage: page,
         totalItems: count 
     } ; let i = index">
-      <img  class="w-full" [src]="game.thumbnail" />
+      <img  class="w-full" [src]="game.thumbnail" alt="{{ game.title }} thumbnail" />
       <div class="px-6 py-4">
         <div class="font-bold text-lg mb-2">{{ game.title }}</div>
         <p class="text-gray-700 text-sm">
@@ -36,8 +38,10 @@
         nextLabel="Next"
         (pageChange) ="onDataChange($event)"
         screenReaderPaginationLabel="Pagination"
+        aria-label="Pagination control"
+        aria-live="assertive"
         screenReaderPageLabel={{page}}
-        screenReaderCurrentLabel="You're on page"
+        screenReaderCurrentLabel="You're on page {{ page}}"
         >
         </pagination-controls>
     </div>
